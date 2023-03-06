@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }, 500);
   } else if (request.type === 'pressUp') {
     if (pressTimer) {
+      console.log("background reset")
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {type: 'reset'});
           });
@@ -23,6 +24,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         pressTimer = null;
     }
   }
+
+
 });
   
 

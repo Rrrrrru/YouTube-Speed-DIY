@@ -2,6 +2,16 @@ console.log('Hello from content.js!');
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     //request.type :reset的逻辑
+    if (request.type === 'reset'){
+      console.log("reset")
+      let video = document.getElementsByTagName('video')[0];
+      if (video && !isNaN(video.playbackRate)) {
+        //let newRate = video.playbackRate + 0.1;
+        let newRate = 1.0;
+        video.playbackRate = newRate;
+        console.log('reset playback rate to ' + newRate);
+      }
+    }
     //request.type :decreaseSpeed的逻辑
     if (request.type === 'increaseSpeed') {
       // 执行增加速度的逻辑
